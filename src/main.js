@@ -56,6 +56,7 @@ async function handleRequest(oRequest, destination, iteration = 0) {
   if (
     (oResponse.status === 302 || oResponse.status === 301) &&
     oResponse.headers.get('location')
+    && request.headers.get('X-Disable-Redirect-Following') !== "true"
   ) {
     // Server tried to redirect too many times
     if (iteration > 5) {
